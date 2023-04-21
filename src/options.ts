@@ -22,20 +22,6 @@ export type FontPluginOptions = {
   font?: FontDefinition | FontDefinition[]
 
   /**
-   * Prefetch fonts
-   *
-   * @defaultValue `false`
-   */
-  prefetch?: boolean
-
-  /**
-   * Preload fonts
-   *
-   * @defaultValue `false`
-   */
-  preload?: boolean
-
-  /**
    * Location where inject link tags to
    *
    * @remarks
@@ -54,15 +40,29 @@ export type FontPluginOptions = {
    * @defaultValue `head-prepend`
    */
   injectStyleTo?: HtmlTagDescriptor['injectTo']
+
+  /**
+   * Prefetch fonts
+   *
+   * @defaultValue `false`
+   */
+  prefetch?: boolean
+
+  /**
+   * Preload fonts
+   *
+   * @defaultValue `false`
+   */
+  preload?: boolean
 }
 
 export type ResolvedFontPluginOptions = {
   base?: string
   font: FontDefinition[]
-  prefetch: boolean
-  preload: boolean
   injectLinkTo: Require<HtmlTagDescriptor['injectTo']>
   injectStyleTo: HtmlTagDescriptor['injectTo']
+  prefetch: boolean
+  preload: boolean
 }
 
 export function resolveOptions(
@@ -79,9 +79,9 @@ export function resolveOptions(
   return {
     base: options.base,
     font,
-    prefetch: options.prefetch ?? false,
-    preload: options.preload ?? false,
     injectLinkTo: options.injectLinkTo ?? 'head-prepend',
-    injectStyleTo: options.injectStyleTo ?? 'head'
+    injectStyleTo: options.injectStyleTo ?? 'head',
+    prefetch: options.prefetch ?? false,
+    preload: options.preload ?? false
   }
 }
