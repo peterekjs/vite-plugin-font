@@ -1,0 +1,63 @@
+{
+  "name": "@peterek/vite-plugin-font",
+  "version": "0.0.0",
+  "description": "Vite plugin for simple use of custom fonts",
+  "keywords": [
+    "vite",
+    "plugin",
+    "font",
+    "fonts"
+  ],
+  "author": {
+    "name": "Jiri Peterek",
+    "email": "jiri@peterek.net"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peterekjs/vite-plugin-font/issues"
+  },
+  "homepage": "https://github.com/peterekjs/vite-plugin-font#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterekjs/vite-plugin-font.git"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "./dist/font.cjs",
+  "module": "./dist/font.js",
+  "exports": {
+    ".": {
+      "import": "./dist/font.js",
+      "require": "./dist/font.cjs"
+    },
+    "./src/*": "./src/*"
+  },
+  "types": "./dist/index.d.ts",
+  "typescript": {
+    "definition": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "glob": "^10.2.1"
+  },
+  "devDependencies": {
+    "@peterek/eslint-config-ts": "^1.0.1",
+    "@peterek/rollup-externals": "^1.0.0",
+    "@types/node": "^18.15.13",
+    "eslint": "^8.38.0",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.1",
+    "vite-plugin-dts": "^2.3.0"
+  }
+}
