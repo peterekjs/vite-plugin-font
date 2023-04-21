@@ -29,8 +29,6 @@ export function serveFontMiddleware(fileMap: Map<string, string>) {
       return return404(res, next)
     }
 
-    console.log('accessing', filePath)
-
     createReadStream(filePath).pipe(res)
   }
 }
