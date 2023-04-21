@@ -25,7 +25,7 @@ export type FontPluginOptions = {
    * Location where inject link tags to
    *
    * @remarks
-   * See {@link HtmlTagDescriptor['injectTo']| the injectTo property of HTMLTagDescriptor} for more details.
+   * See the injectTo property of {@link HtmlTagDescriptor| HTMLTagDescriptor} for more details.
    *
    * @defaultValue `head-prepend`
    */
@@ -35,7 +35,7 @@ export type FontPluginOptions = {
    * Location where inject style tags to
    *
    * @remarks
-   * See {@link HtmlTagDescriptor['injectTo']| the injectTo property of HTMLTagDescriptor} for more details.
+   * See the injectTo property of {@link HtmlTagDescriptor| HTMLTagDescriptor} for more details.
    *
    * @defaultValue `head-prepend`
    */
