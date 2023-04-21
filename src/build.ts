@@ -1,16 +1,14 @@
 import { join } from 'node:path'
 
-import { Plugin, ResolvedConfig } from 'vite'
+import type { Plugin, ResolvedConfig } from 'vite'
 
 import { DEFAULT_BASE } from './defaults'
+import { copyAll, createFontPathMap } from './file'
 import { createFontLinkTags, createFontStyleTags } from './font'
-import { createFontPathMap } from './file'
 import type { ResolvedFontPluginOptions } from './options'
-import { serveFontMiddleware } from './middleware'
-import { prependMiddleware } from './tools'
-import type { FontData, MappedFontPaths } from './types'
+import { FontData, MappedFontPaths } from './types'
 
-export function servePlugin(
+export function buildPlugin(
   options: ResolvedFontPluginOptions,
   data: FontData
 ): Plugin {
@@ -18,24 +16,14 @@ export function servePlugin(
   let fileMap: MappedFontPaths
 
   return {
-    name: '@peterek/vite-plugin-font:serve',
-    apply: 'serve',
+    name: '@peterek/vite-plugin-font:build',
+    apply: 'build',
     configResolved(_config) {
       config = _config
       fileMap = createFontPathMap(
         data,
         options.base ?? join(config.base, DEFAULT_BASE)
       )
-    },
-    configureServer({ middlewares }) {
-      return () => {
-        middlewares.use(serveFontMiddleware(fileMap.fromServer))
-        prependMiddleware(
-          middlewares.stack,
-          'viteTransformMiddleware',
-          'viteServeFontMiddleware'
-        )
-      }
     },
     transformIndexHtml(html) {
       return {
@@ -45,6 +33,9 @@ export function servePlugin(
           ...createFontStyleTags(data, options, fileMap)
         ]
       }
+    },
+    async writeBundle() {
+      await copyAll(fileMap, join(config.envDir, config.build.outDir))
     }
   }
 }

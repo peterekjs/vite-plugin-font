@@ -1,5 +1,6 @@
 import type { Plugin } from 'vite'
 
+import { buildPlugin } from './build'
 import { parseFontDefinitions } from './font'
 import { resolveOptions } from './options'
 import type { FontPluginOptions } from './options'
@@ -9,5 +10,8 @@ export function font(options: FontPluginOptions = {}): Plugin[] {
   const resolvedOptions = resolveOptions(options)
   const data = parseFontDefinitions(resolvedOptions.font)
 
-  return [servePlugin(resolvedOptions, data)]
+  return [
+    servePlugin(resolvedOptions, data),
+    buildPlugin(resolvedOptions, data)
+  ]
 }
