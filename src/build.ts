@@ -35,7 +35,10 @@ export function buildPlugin(
       }
     },
     async writeBundle() {
-      await copyAll(fileMap, join(config.envDir, config.build.outDir))
+      await copyAll(
+        fileMap,
+        join(config.envDir ?? process.cwd(), config.build.outDir)
+      )
     }
   }
 }
