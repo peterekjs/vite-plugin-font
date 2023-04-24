@@ -4,7 +4,7 @@ import { globSync } from 'glob'
 import type { HtmlTagDescriptor } from 'vite'
 
 import type { ResolvedFontPluginOptions } from './options'
-import {
+import type {
   FontData,
   FontDisplay,
   FontFace,
