@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 
 import type { Plugin, ResolvedConfig } from 'vite'
 
@@ -37,7 +37,7 @@ export function buildPlugin(
     async writeBundle() {
       await copyAll(
         fileMap,
-        join(config.envDir ?? process.cwd(), config.build.outDir)
+        resolve(config.envDir ?? process.cwd(), config.build.outDir)
       )
     }
   }
