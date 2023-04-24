@@ -1,4 +1,4 @@
-import { dirname, join } from 'node:path'
+import { dirname, join, sep } from 'node:path'
 import { copyFile, mkdir } from 'node:fs/promises'
 
 import { FontData, MappedFontPaths } from './types'
@@ -23,7 +23,7 @@ export function createFontPathMap(
   data.forEach(({ faces }) => {
     faces.forEach(({ files }) => {
       files.forEach((file) => {
-        const onServer = join(base, file.path.base)
+        const onServer = join(base, file.path.base).split(sep).join('/')
         const onFS = file.src
 
         fromServer.set(onServer, onFS)
