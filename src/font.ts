@@ -6,6 +6,7 @@ import type { HtmlTagDescriptor } from 'vite'
 import type { ResolvedFontPluginOptions } from './options'
 import {
   FontData,
+  FontDisplay,
   FontFace,
   FontDefinition,
   MappedFontPaths,
