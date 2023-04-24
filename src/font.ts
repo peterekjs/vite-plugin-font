@@ -4,6 +4,7 @@ import { globSync } from 'glob'
 import type { HtmlTagDescriptor } from 'vite'
 
 import type { ResolvedFontPluginOptions } from './options'
+import { toForwardSlash } from './tools'
 import type {
   FontData,
   FontDisplay,
@@ -91,7 +92,7 @@ export function parseFontDefinitions(
 ): FontData {
   return new Map(
     fontDefinitions.map(({ name, src, display }) => {
-      const files = globSync(src)
+      const files = globSync(toForwardSlash(src))
       return [
         name,
         {

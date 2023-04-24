@@ -1,6 +1,7 @@
-import { dirname, join, sep } from 'node:path'
+import { dirname, join } from 'node:path'
 import { copyFile, mkdir } from 'node:fs/promises'
 
+import { toForwardSlash } from './tools'
 import { FontData, MappedFontPaths } from './types'
 
 export async function copyAll(fileMap: MappedFontPaths, dest: string) {
@@ -23,7 +24,7 @@ export function createFontPathMap(
   data.forEach(({ faces }) => {
     faces.forEach(({ files }) => {
       files.forEach((file) => {
-        const onServer = join(base, file.path.base).split(sep).join('/')
+        const onServer = toForwardSlash(join(base, file.path.base))
         const onFS = file.src
 
         fromServer.set(onServer, onFS)

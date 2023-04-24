@@ -1,4 +1,10 @@
+import { sep } from 'node:path'
+
 import type { Connect } from 'vite'
+
+export function toForwardSlash(pathString: string) {
+  return pathString.split(sep).join('/')
+}
 
 export function findMiddlewareIndex(
   stack: Connect.ServerStackItem[],
