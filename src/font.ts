@@ -34,6 +34,7 @@ export function extractWeight(filename?: string) {
   if (filename.includes('extralight')) return 200
   if (filename.includes('ultralight')) return 200
   if (filename.includes('light')) return 300
+  if (filename.includes('regular')) return 400
   if (filename.includes('normal')) return 400
   if (filename.includes('medium')) return 500
   if (filename.includes('semibold')) return 600
