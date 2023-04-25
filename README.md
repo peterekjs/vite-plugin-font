@@ -1,7 +1,30 @@
 # @peterek/vite-plugin-font
 Vite plugin for simple use of custom fonts
 
-## Usage in Vite config file
+## Use in [Vite config](https://vitejs.dev/config/) file
+
+### Minimal configuration
+
+```js
+import { join } from 'node:path'
+
+import { font } from '@peterek/vite-plugin-font'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    font({
+      font: {
+        name: 'Pacifico',
+        src: join(__dirname, 'assets/Pacifico/*.ttf'),
+      },
+    })
+  ]
+})
+```
+
+### Full configuration
+
 ```js
 import { join } from 'node:path'
 
@@ -15,7 +38,7 @@ export default defineConfig({
       // Default: `UserConfig['base'] + 'fonts'`
       base: '/',
 
-      // List of font definitons.
+      // Font definitons. It can be defined as single object or as list of configurations
       font: [
         {
           // Font name to be referenced by css rule e.g.: `font-family: Pacifico;`
