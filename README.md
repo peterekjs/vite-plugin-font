@@ -15,8 +15,8 @@ export default defineConfig({
   plugins: [
     font({
       font: {
-        name: 'Pacifico',
-        src: join(__dirname, 'assets/Pacifico/*.ttf'),
+        name: 'Roboto',
+        src: join(__dirname, 'assets/Roboto/*.ttf'),
       },
     })
   ]
@@ -41,10 +41,10 @@ export default defineConfig({
       // Font definitons. It can be defined as single object or as list of configurations
       font: [
         {
-          // Font name to be referenced by css rule e.g.: `font-family: Pacifico;`
-          name: 'Pacifico',
+          // Font name to be referenced by css rule e.g.: `font-family: Roboto;`
+          name: 'Roboto',
           // Absolute path to the font sources using glob pattern
-          src: join(__dirname, 'assets/Pacifico/*.ttf'),
+          src: join(__dirname, 'assets/Roboto/*.ttf'),
           // The `font-display` descriptor used for each font-face (optional). Default: 'auto'
           display: 'auto',
         },
