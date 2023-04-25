@@ -1,8 +1,10 @@
 import { sep } from 'node:path'
 
+import { assertString } from './assert'
 import type { Connect } from 'vite'
 
 export function toForwardSlash(pathString: string) {
+  assertString(pathString)
   return pathString.split(sep).join('/')
 }
 
