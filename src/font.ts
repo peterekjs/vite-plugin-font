@@ -15,7 +15,7 @@ import type {
 } from './types'
 
 // #region Extractors
-function extractFormat(filename: string) {
+export function extractFormat(filename: string) {
   const ext = extname(filename)
 
   if (ext === '.woff') return 'woff'
@@ -26,7 +26,7 @@ function extractFormat(filename: string) {
   return ext.replace('.', '')
 }
 
-function extractWeight(filename?: string) {
+export function extractWeight(filename?: string) {
   if (!filename) return 400
   filename = filename.toLowerCase()
 
@@ -46,7 +46,7 @@ function extractWeight(filename?: string) {
   return 400
 }
 
-function extractStyle(filename?: string) {
+export function extractStyle(filename?: string) {
   if (!filename) return 'normal'
   filename = filename.toLowerCase()
 
