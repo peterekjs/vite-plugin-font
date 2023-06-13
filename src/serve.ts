@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { resolve } from 'node:path'
 
 import { Plugin, ResolvedConfig } from 'vite'
 
@@ -24,12 +24,14 @@ export function servePlugin(
       config = _config
       fileMap = createFontPathMap(
         data,
-        options.base ?? join(config.base, DEFAULT_BASE)
+        options.base
+          ? resolve(config.base, options.base)
+          : resolve(config.base, DEFAULT_BASE)
       )
     },
     configureServer({ middlewares }) {
       return () => {
-        middlewares.use(serveFontMiddleware(fileMap.fromServer))
+        middlewares.use(serveFontMiddleware(fileMap.fromServer, config.base))
         prependMiddleware(
           middlewares.stack,
           'viteTransformMiddleware',

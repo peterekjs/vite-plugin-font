@@ -1,4 +1,4 @@
-import { join, resolve } from 'node:path'
+import { resolve } from 'node:path'
 
 import type { Plugin, ResolvedConfig } from 'vite'
 
@@ -22,7 +22,9 @@ export function buildPlugin(
       config = _config
       fileMap = createFontPathMap(
         data,
-        options.base ?? join(config.base, DEFAULT_BASE)
+        options.base
+          ? resolve(config.base, options.base)
+          : resolve(config.base, DEFAULT_BASE)
       )
     },
     transformIndexHtml(html) {
@@ -37,7 +39,8 @@ export function buildPlugin(
     async writeBundle() {
       await copyAll(
         fileMap,
-        resolve(config.envDir ?? process.cwd(), config.build.outDir)
+        resolve(config.envDir ?? process.cwd(), config.build.outDir),
+        config.base
       )
     }
   }

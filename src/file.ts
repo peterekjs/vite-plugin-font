@@ -1,13 +1,17 @@
-import { dirname, join } from 'node:path'
+import { dirname, join, relative } from 'node:path'
 import { copyFile, mkdir } from 'node:fs/promises'
 
 import { toForwardSlash } from './tools'
 import { FontData, MappedFontPaths } from './types'
 
-export async function copyAll(fileMap: MappedFontPaths, dest: string) {
+export async function copyAll(
+  fileMap: MappedFontPaths,
+  dest: string,
+  base = '/'
+) {
   await Promise.all(
     [...fileMap.fromFS.entries()].map(async ([from, to]) => {
-      const target = join(dest, to)
+      const target = join(dest, relative(base, to))
       await mkdir(dirname(target), { recursive: true })
       await copyFile(from, target)
     })
