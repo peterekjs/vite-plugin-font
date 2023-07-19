@@ -1,10 +1,7 @@
-import { resolve } from 'node:path'
+import { Plugin, type ResolvedConfig } from 'vite'
 
-import { Plugin, ResolvedConfig } from 'vite'
-
-import { DEFAULT_BASE } from './defaults'
 import { createFontLinkTags, createFontStyleTags } from './font'
-import { createFontPathMap } from './file'
+import { createFontPathMap, getBase } from './file'
 import type { ResolvedFontPluginOptions } from './options'
 import { serveFontMiddleware } from './middleware'
 import { prependMiddleware } from './tools'
@@ -22,12 +19,7 @@ export function servePlugin(
     apply: 'serve',
     configResolved(_config) {
       config = _config
-      fileMap = createFontPathMap(
-        data,
-        options.base
-          ? resolve(config.base, options.base)
-          : resolve(config.base, DEFAULT_BASE)
-      )
+      fileMap = createFontPathMap(data, getBase(config, options))
     },
     configureServer({ middlewares }) {
       return () => {

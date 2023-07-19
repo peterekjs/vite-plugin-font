@@ -1,6 +1,10 @@
 import { dirname, join, relative } from 'node:path'
 import { copyFile, mkdir } from 'node:fs/promises'
 
+import type { ResolvedConfig } from 'vite'
+
+import { DEFAULT_BASE } from './defaults'
+import type { ResolvedFontPluginOptions } from './options'
 import { toForwardSlash } from './tools'
 import { FontData, MappedFontPaths } from './types'
 
@@ -16,6 +20,15 @@ export async function copyAll(
       await copyFile(from, target)
     })
   )
+}
+
+export function getBase(
+  config: Pick<ResolvedConfig, 'base'>,
+  options: ResolvedFontPluginOptions
+) {
+  return options.base
+    ? join(config.base, options.base)
+    : join(config.base, DEFAULT_BASE)
 }
 
 export function createFontPathMap(
