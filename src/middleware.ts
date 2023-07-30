@@ -1,8 +1,10 @@
 import { createReadStream } from 'node:fs'
 import type { IncomingMessage, ServerResponse } from 'node:http'
-import { join } from 'node:path'
+import { join, sep } from 'node:path'
 
 import type { Connect } from 'vite'
+
+const URL_SEPARATOR = '/'
 
 function return404(res: ServerResponse, next?: Connect.NextFunction) {
   if (next) {
@@ -25,7 +27,7 @@ export function serveFontMiddleware(fileMap: Map<string, string>, base = '/') {
       return return404(res, next)
     }
 
-    const searchUrl = join(base, url)
+    const searchUrl = join(base, url).split(sep).join(URL_SEPARATOR)
 
     if (!fileMap.has(searchUrl)) {
       return return404(res, next)
