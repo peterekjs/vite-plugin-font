@@ -1,6 +1,6 @@
 {
   "name": "@peterek/vite-plugin-font",
-  "version": "1.2.2",
+  "version": "2.0.0-0",
   "description": "Vite plugin for simple use of custom fonts",
   "keywords": [
     "vite",
