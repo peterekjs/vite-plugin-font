@@ -1,4 +1,4 @@
-import { Plugin, type ResolvedConfig } from 'vite'
+import { type Plugin, type ResolvedConfig } from 'vite'
 
 import { createFontLinkTags, createFontStyleTags } from './font'
 import { createFontPathMap, getBase } from './file'

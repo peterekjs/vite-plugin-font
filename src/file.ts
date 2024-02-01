@@ -6,7 +6,7 @@ import type { ResolvedConfig } from 'vite'
 import { DEFAULT_BASE } from './defaults'
 import type { ResolvedFontPluginOptions } from './options'
 import { toForwardSlash } from './tools'
-import { FontData, MappedFontPaths } from './types'
+import type { FontData, MappedFontPaths } from './types'
 
 export async function copyAll(
   fileMap: MappedFontPaths,
